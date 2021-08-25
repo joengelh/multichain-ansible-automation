@@ -12,7 +12,6 @@
   - yum-update
   - hostname-set
   - time-set
-  - firewall
 
 - name: install multichain
   hosts: total
