@@ -1,0 +1,20 @@
+---
+- name: install epel release repo
+  yum:
+    name:
+    - epel-release
+    state: latest
+
+- name: install required packages and common packages
+  yum:
+    name:
+    - yum-utils
+    - wget
+    - vim
+    - git
+    - htop
+    - zip
+    - unzip
+    - python3
+    - python3-pip
+    state: latest

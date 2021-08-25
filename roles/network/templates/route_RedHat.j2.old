@@ -1,0 +1,6 @@
+#jinja2: lstrip_blocks: "True", trim_blocks: "True"
+ADDRESS{{ item.0 - 1 }}={{ item.1.route.network }}
+NETMASK{{ item.0 - 1 }}={{ item.1.route.netmask }}
+    {% if item.1.route.gateway is defined %}
+GATEWAY{{ item.0 - 1 }}={{ item.1.route.gateway }}
+    {% endif %}

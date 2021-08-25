@@ -1,0 +1,5 @@
+---
+- include_tasks: packages.yml
+- include_tasks: yum-update.yml
+- include_tasks: reboot.yml
+

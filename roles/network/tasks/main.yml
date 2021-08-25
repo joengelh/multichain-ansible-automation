@@ -1,0 +1,5 @@
+---
+- include_tasks: varloader.yml
+- include_tasks: ether.yml 
+- include_tasks: vlan.yml 
+- include_tasks: bridge.yml 

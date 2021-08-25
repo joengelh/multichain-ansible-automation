@@ -1,0 +1,4 @@
+---
+- name: set time zone and so on
+  timezone: 
+    name: Europe/Berlin

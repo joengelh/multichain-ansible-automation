@@ -1,0 +1,22 @@
+---
+- name: remove blockchain from all servers
+  hosts: total
+  become: no
+  tasks:
+  - name: turn off cron
+    cron:
+      name: "blockchain {{ blockchainName }}"
+      state: absent
+    register: cronResult
+  - name: delete blockchain data
+    file:
+      path: "/home/ansible/.multichain/{{ blockchainName }}"
+      state: absent
+    register: deleteResult
+- name: reboot with root privileges
+  hosts: total
+  become: yes
+  tasks:
+  - name: reboot when cron or deltetion changed
+    reboot:
+    when: cronResult.changed or deleteResult.changed

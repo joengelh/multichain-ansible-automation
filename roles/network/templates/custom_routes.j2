@@ -1,0 +1,6 @@
+#jinja2: lstrip_blocks: "True", trim_blocks: "True"
+{% for route in custom_routes %}
+{% if route.gateway == 'oumgateway' %}
+{{ route.dest }} via {{ oum_router }} dev {{ oum_interface }}
+{% endif %}
+{% endfor %}

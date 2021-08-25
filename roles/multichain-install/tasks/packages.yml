@@ -1,0 +1,7 @@
+---
+- name: install required packages
+  yum:
+    name:
+    - tar
+    - wget
+    state: latest

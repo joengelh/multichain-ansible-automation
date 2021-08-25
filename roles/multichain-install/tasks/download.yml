@@ -1,0 +1,16 @@
+---
+- name: download multichain
+  unarchive:
+    src: https://www.multichain.com/download/multichain-1.0.1.tar.gz
+    dest: /
+    remote_src: yes
+  register: downloadResult
+
+- name: install multichain
+  command: "cp -r /multichain-1.0.1/{{ item }} /usr/local/bin"
+  loop:
+  - multichaind
+  - multichain-cli
+  - multichain-util
+  when: downloadResult.changed
+

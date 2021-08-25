@@ -1,0 +1,10 @@
+---
+- name: open default multichain network port {{ networkPort }} and rpc port {{ rpcPort }}
+  firewalld:
+    port: "{{ item }}/tcp"
+    permanent: yes
+    state: enabled
+    immediate: yes
+  loop:
+  - "{{ networkPort }}"
+  - "{{ rpcPort }}"

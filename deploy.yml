@@ -1,0 +1,33 @@
+---
+- name: create ansible user for deployment
+  hosts: roottotal
+  become: no
+  roles:
+  - user-add
+
+- name: prepare hosts for deployment
+  hosts: total
+  become: yes
+  roles:
+  - yum-update
+  - hostname-set
+  - time-set
+  - firewall
+
+- name: install multichain
+  hosts: total
+  become: yes
+  roles:
+  - multichain-install
+
+- name: deploy multichain
+  hosts: contractor
+  become: no
+  roles:
+  - multichain-deploy 
+
+- name: attach the other servers to multichain
+  hosts: partners
+  become: no
+  roles:
+  - multichain-attach

@@ -1,0 +1,5 @@
+#jinja2: lstrip_blocks: "True", trim_blocks: "True"
+{% for routes in item.route6 %}
+{% set net = routes.network + "/" + routes.netmask %}
+{{ net }} via {{routes.gateway}} dev {{item.device}}
+{% endfor %}

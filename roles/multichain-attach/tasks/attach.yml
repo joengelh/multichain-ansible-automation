@@ -1,0 +1,34 @@
+---
+- name: make chain come back up after reboot
+  cron:
+    name: "blockchain {{ blockchainName }}"
+    state: present
+    special_time: reboot
+    job: "sleep 10 && /usr/local/bin/multichaind {{ blockchainName }}@{{ hostvars['multichain-contractor'].ansible_host }}:{{ networkPort }} -daemon >> /home/ansible/.multichain/{{ blockchainName }}/autostart.log"
+    user: ansible
+  register: cronResult
+
+- name: attach to multichain if not already
+  block:
+  - name: attach to blockchain {{ blockchainName }}
+    command: "/usr/local/bin/multichaind {{ blockchainName }}@{{ hostvars['multichain-contractor'].ansible_host }}:{{ networkPort }}"
+    register: result
+  rescue:
+  - name: copy ssh key
+    copy:
+      src: ~/.ssh/id_rsa
+      dest: /home/ansible/.ssh/
+  - name: enable user
+    command: "{{ result.stdout_lines[5] }},issue,create,mine"
+    delegate_to: multichain-contractor
+    when: "'writers' in group_names"
+  - name: enable user
+    command: "{{ result.stdout_lines[5] }}"
+    delegate_to: multichain-contractor
+    when: "'readers' in group_names"
+  when: cronResult.changed
+
+- name: reboot when cron changed
+  reboot:
+  become: yes
+  when: cronResult.changed

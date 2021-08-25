@@ -1,0 +1,4 @@
+---
+blockchainName: "supplyChain"
+networkPort: 7700
+rpcPort: 7755

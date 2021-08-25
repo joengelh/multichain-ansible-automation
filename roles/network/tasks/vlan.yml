@@ -1,0 +1,8 @@
+---
+- name: Create the network configuration file for vlan devices
+  template:
+    src: "ethernet_{{ ansible_os_family }}.j2"
+    dest: "{{ net_path }}/ifcfg-{{ item.device }}"
+  loop: "{{ network_vlan_interfaces }}"
+  when: network_vlan_interfaces
+  notify: reboot

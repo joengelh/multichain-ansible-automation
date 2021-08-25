@@ -1,0 +1,8 @@
+---
+- name: Create the network configuration file for bridge devices
+  template:
+    src: "bridge_{{ ansible_os_family }}.j2"
+    dest: "{{ net_path }}/ifcfg-{{ item.device }}"
+  loop: "{{ network_bridge_interfaces }}"
+  when: network_bridge_interfaces is defined
+  notify: reboot

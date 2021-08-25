@@ -1,0 +1,3 @@
+#jinja2: lstrip_blocks: "True", trim_blocks: "True"
+{% set net = item.1.route.network + "/" + item.1.route.netmask %}
+{{  net | ipaddr("net") }} via {{ item.1.route.gateway }} dev {{ item.1.device }}
