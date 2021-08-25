@@ -13,10 +13,18 @@
       path: "/home/ansible/.multichain/{{ blockchainName }}"
       state: absent
     register: deleteResult
-- name: reboot with root privileges
+- name: uninstall and reboot with root privileges
   hosts: total
   become: yes
   tasks:
+  - name: delete program
+    file:
+      path: "/usr/local/bin/{{ item }}"
+      state: absent
+    loop:
+    - multichaind
+    - multichain-cli
+    - multichain-util
   - name: reboot when cron or deltetion changed
     reboot:
     when: cronResult.changed or deleteResult.changed

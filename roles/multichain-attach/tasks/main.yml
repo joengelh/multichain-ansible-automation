@@ -1,4 +1,4 @@
 ---
-- import_task: cron.yml
-- import_task: permission.yml
-- import_task: reboot.yml
+- import_tasks: cron.yml
+- import_tasks: permission.yml
+- import_tasks: reboot.yml
