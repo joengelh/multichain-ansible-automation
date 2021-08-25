@@ -8,6 +8,12 @@ ssh-copy-id root@<host_address>
 ``` 
 and the inventory has to be adjusted according to the developers needs.
 
+Therafer using the command 
+```bash
+ansible-playbook deploy.yml -i inventory
+```
+installs, starts and permissions the blockchain on all nodes.
+
 ## The Inventory
 In the Inventory there are 6 groups used to diffrentiate between the hosts.
 1. For security reasons, only the configuration of the network interface and the user configuration are done using the root user, neccecitating in the **roottotal** group. This group includes the root user aswell as the IP-Addresses of all hosts taking part in the distributed ledger.
@@ -29,3 +35,12 @@ In the Inventory there are 6 groups used to diffrentiate between the hosts.
 | multichain-install | installs and configures the servers to run multichain | total        |
 | multichain-deploy  | creates the genesis block and starts the blockchain   | contractor   |
 | multichain-attach  | connects the **partner** servers and permissions them | partners     |
+
+## Tools
+
+### cleanup.yml
+This tool uninstalls multichain from the participating nodes, removes the **@reboot** cronjobs, installation and blockchain data, then reboots the system to stop the processes.
+The tool can be run using 
+```bash
+ansible-playbook cleanup.yml -i inventory
+```
