@@ -14,6 +14,17 @@ ansible-playbook deploy.yml -i inventory
 ```
 installs, starts and permissions the blockchain on all nodes.
 
+## Configuration
+Some basic configuration of the node setup can be done by modifying the **host_vars/all.yml** file:
+
+```bash
+---
+blockchainName: "supplyChain"
+networkPort: 7700
+rpcPort: 7755
+explorerPort: 4444
+``` 
+
 ## The Inventory
 In the Inventory there are 6 groups used to diffrentiate between the hosts.
 1. For security reasons, only the configuration of the network interface and the user configuration are done using the root user, neccecitating in the **roottotal** group. This group includes the root user aswell as the IP-Addresses of all hosts taking part in the distributed ledger.
@@ -33,7 +44,7 @@ In the Inventory there are 6 groups used to diffrentiate between the hosts.
 | hostname-set       | sets hostname to be equal to inventory name           | total        |
 | time-set           | sets central european time zone                       | total        |
 | multichain-install | installs and configures the servers to run multichain | total        |
-| multichain-deploy  | creates the genesis block and starts the blockchain   | contractor   |
+| multichain-deploy  | creates genesis block, starts blockchain & explorer   | contractor   |
 | multichain-attach  | connects the **partner** servers and permissions them | partners     |
 
 ## Tools
@@ -44,3 +55,7 @@ The tool can be run using
 ```bash
 ansible-playbook cleanup.yml -i inventory
 ```
+
+### multichain explorer
+Included in the role multichain-deploy is also the installation of the multichain explorer 2.
+This is a webaplication used to display broad metrics about the distributed ledger. It can be accessed at the contractors address: **<server_ip>:{{ explorerPort }}**

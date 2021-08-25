@@ -1,0 +1,17 @@
+---
+- name: download the explorer from Github
+  git:
+    repo: git://github.com/MultiChain/multichain-explorer-2.git
+    dest: /home/ansible/multichain-explorer-2
+    version: master
+    update: no
+
+- name: place explorer config file
+  template:
+    src: example.ini.j2
+    dest: /home/ansible/multichain-explorer-2/config.ini
+
+- name: start the explorer
+  shell: 
+    cmd: python3 -m explorer config.ini daemon
+    chdir: /home/ansible/multichain-explorer-2

@@ -2,12 +2,12 @@
 - name: download multichain
   unarchive:
     src: https://www.multichain.com/download/multichain-2.1.2.tar.gz
-    dest: /
+    dest: /home/ansible/
     remote_src: yes
 
 - name: install multichain
   file:
-    src: "/multichain-2.1.2/{{ item }}"
+    src: "/home/ansible/multichain-2.1.2/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"
     state: link
   loop:
