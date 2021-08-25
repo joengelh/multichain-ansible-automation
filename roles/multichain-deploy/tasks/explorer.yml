@@ -18,15 +18,19 @@
 
 - name: set fact as password
   set_fact:
-    slurpResultDecoded: "{{ slurpResult['content'] | b64decode | regex_findall('\n(.*)') }}"
+    userDecoded: "{{ slurpResult['content'] | b64decode | regex_findall('.+?(?=\n)') }}"
 
-- name: put password into explorer config
+- name: set fact as password
+  set_fact:
+    passwordDecoded: "{{ slurpResult['content'] | b64decode | regex_findall('\n(.*)') }}"
+
+- name: put password and user into explorer config
   lineinfile:
     path: /home/ansible/multichain-explorer-2/config.ini
-    regexp: 'rpcpassword='
-    line: "{{ slurpResultDecoded[0] }}"
-
-- name: start the explorer
-  shell:
-    cmd: python3 -m explorer config.ini daemon
-    chdir: /home/ansible/multichain-explorer-2
+    regexp: "{{ item.regexp}}"
+    line: "{{ item.line }}"
+  loop:
+  - regexp: 'rpcpassword='
+    line: "{{ passwordDecoded[0] }}"
+  - regexp: 'rpcuser='
+    line: "{{ userDecoded[0] }}"

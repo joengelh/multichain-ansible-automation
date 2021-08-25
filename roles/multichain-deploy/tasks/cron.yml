@@ -6,13 +6,13 @@
     special_time: reboot
     job: "sleep 5 && /usr/local/bin/multichaind {{ blockchainName }} -daemon -explorersupport=1 >> /home/ansible/.multichain/{{ blockchainName }}/autostart.log"
     user: ansible
-  register: cronResult
+  register: cronResultBlockchain
 
 - name: start explorer for {{ blockchainName }} on startup
   cron:
     name: "explorer {{ blockchainName }}"
     state: present
     special_time: reboot
-    job: "sleep 10 && python3 -m /home/ansible/blockchain-explorer-2/explprer config.ini daemon >> /home/ansible/.multichain/{{ blockchainName }}/explorer.log"
+    job: "sleep 10 && cd /home/ansible/multichain-explorer-2 && python3 -m explorer config.ini daemon >> /home/ansible/.multichain/{{ blockchainName }}/explorer.log"
     user: ansible
-  register: cronResult
+  register: cronResultExplorer
