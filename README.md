@@ -17,4 +17,17 @@ In the Inventory there are 6 groups used to diffrentiate between the hosts.
 5. The **partners** group simply is the combination if readers and writers
 6. The **total** group includes all hosts taking part in the network
 
+## The Roles
+
+| roles              | desription                                            | target hosts |
+|--------------------|-------------------------------------------------------|--------------|
+| user-add           | adds ansible user and passwordless sudo               | roottotal    |
+| network            | configures the network interfaces                     | roottotal    |
+| yum-update         | updates all packages and repositories                 | total        |
+| hostname-set       | sets hostname to be equal to inventory name           | total        |
+| time-set           | sets central european time zone                       | total        |
+| multichain-install | installs and configures the servers to run multichain | total        |
+| multichain-deploy  | creates the genesis block and starts the blockchain   | contractor   |
+| multichain-attach  | connects the **partner** servers and permissions them | partners     |
+
 
