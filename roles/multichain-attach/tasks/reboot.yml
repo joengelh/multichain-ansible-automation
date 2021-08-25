@@ -1,0 +1,5 @@
+---
+- name: reboot when cron changed
+  reboot:
+  become: yes
+  when: cronResult.changed

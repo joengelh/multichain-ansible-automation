@@ -1,0 +1,11 @@
+---
+- name: specify parameters in params.dat file for default port setting to {{ networkPort }} for network port and {{ rpcPort }} for rpcport
+  lineinfile:
+    path: "/home/ansible/.multichain/{{ blockchainName }}/params.dat"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop:
+    - regexp: "default-rpc-port"
+      line: "default-rpc-port = {{ rpcPort }}"
+    - regexp: "default-network-port"
+      line: "default-network-port = {{ networkPort }}"

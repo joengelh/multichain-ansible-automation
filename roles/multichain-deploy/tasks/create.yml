@@ -1,0 +1,6 @@
+---
+- name: create blockchain named {{ blockchainName }}
+  command: "/usr/local/bin/multichain-util create {{ blockchainName }}"
+  args:
+    creates: "/home/ansible/.multichain/{{ blockchainName }}/params.dat"
+  register: deployResult

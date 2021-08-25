@@ -1,2 +1,4 @@
 ---
-- import_tasks: attach.yml
+- import_task: cron.yml
+- import_task: permission.yml
+- import_task: reboot.yml
