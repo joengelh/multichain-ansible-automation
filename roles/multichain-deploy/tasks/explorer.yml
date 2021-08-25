@@ -11,7 +11,22 @@
     src: example.ini.j2
     dest: /home/ansible/multichain-explorer-2/config.ini
 
+- name: get the password
+  slurp:
+    src: /home/ansible/.multichain/{{ blockchainName }}/multichain.conf
+  register: slurpResult
+
+- name: set fact as password
+  set_fact:
+    slurpResultDecoded: "{{ slurpResult['content'] | b64decode | regex_findall('\n(.*)') }}"
+
+- name: put password into explorer config
+  lineinfile:
+    path: /home/ansible/multichain-explorer-2/config.ini
+    regexp: 'rpcpassword='
+    line: "{{ slurpResultDecoded[0] }}"
+
 - name: start the explorer
-  shell: 
+  shell:
     cmd: python3 -m explorer config.ini daemon
     chdir: /home/ansible/multichain-explorer-2
