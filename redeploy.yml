@@ -1,0 +1,25 @@
+---
+- name: install multichain
+  hosts: total
+  become: yes
+  roles:
+  - multichain-install
+
+- name: deploy multichain
+  hosts: contractor
+  become: no
+  roles:
+  - multichain-deploy 
+
+- name: attach the other servers to multichain
+  hosts: partners
+  become: no
+  roles:
+  - multichain-attach
+
+- name: create getting started material
+  hosts: localhost
+  connection: local
+  become: no
+  roles:
+  - multichain-getting-started

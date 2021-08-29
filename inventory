@@ -1,18 +1,12 @@
-[roottotal]
-root-multichain-contractor ansible_user=root ansible_host=192.168.2.30
-root-multichain-producer ansible_user=root ansible_host=192.168.2.31
-root-multichain-customer ansible_user=root ansible_host=192.168.2.32
-root-multichain-logistics ansible_user=root ansible_host=192.168.2.33
-
 [contractor]
-multichain-contractor ansible_user=ansible ansible_host=192.168.2.30
+dockerVm ansible_host=192.168.2.8
 
 [readers]
-multichain-producer ansible_user=ansible ansible_host=192.168.2.31
-multichain-logistics ansible_user=ansible ansible_host=192.168.2.33
+nfs ansible_host=192.168.2.11
+repository ansible_host=192.168.2.13
 
 [writers]
-multichain-customer ansible_user=ansible ansible_host=192.168.2.32
+monero ansible_host=192.168.2.2
 
 [partners:children]
 readers
