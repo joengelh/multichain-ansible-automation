@@ -13,16 +13,16 @@
     dest: /home/ansible/multichain-explorer-2/config.ini
   when: githubCloneResult.changed
 
-- name: get the password
+- name: get user and password from multichain.conf
   slurp:
     src: /home/ansible/.multichain/{{ blockchainName }}/multichain.conf
   register: slurpResult
 
-- name: set fact as password
+- name: set user as fact
   set_fact:
     userDecoded: "{{ slurpResult['content'] | b64decode | regex_findall('.+?(?=\n)') }}"
 
-- name: set fact as password
+- name: set password as fact
   set_fact:
     passwordDecoded: "{{ slurpResult['content'] | b64decode | regex_findall('\n(.*)') }}"
 

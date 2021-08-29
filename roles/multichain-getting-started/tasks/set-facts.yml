@@ -1,0 +1,13 @@
+---
+- name: get user and password from multichain.conf
+  slurp:
+    src: /home/ansible/.multichain/{{ blockchainName }}/multichain.conf
+  register: slurpResult
+
+- name: set user as fact
+  set_fact:
+    userDecoded: "{{ slurpResult['content'] | b64decode | regex_findall('.+?(?=\n)') }}"
+
+- name: set password as fact
+  set_fact:
+    passwordDecoded: "{{ slurpResult['content'] | b64decode | regex_findall('\n(.*)') }}"

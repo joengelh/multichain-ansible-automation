@@ -59,3 +59,7 @@ ansible-playbook cleanup.yml -i inventory
 ### multichain explorer
 Included in the role multichain-deploy is also the installation of the multichain explorer 2.
 This is a webaplication used to display broad metrics about the distributed ledger. It can be accessed at the contractors address: **<server_ip>:{{ explorerPort }}**
+
+### getting_started.py
+At the end of the Ansible Playbook run **deploy.yml** a pythonscript in the projects root directory is created containing an import of a [python module](https://github.com/coblo/mcrpc) and the connection details to the contractor node.
+With this script you can start developing your multichain solution right away.
