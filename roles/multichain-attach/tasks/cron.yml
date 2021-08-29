@@ -4,6 +4,6 @@
     name: "blockchain {{ blockchainName }}"
     state: present
     special_time: reboot
-    job: "sleep 10 && /usr/local/bin/multichaind {{ blockchainName }}@{{ hostvars['multichain-contractor'].ansible_host }}:{{ networkPort }} -daemon >> /home/ansible/.multichain/{{ blockchainName }}/autostart.log"
+    job: "sleep 10 && /usr/local/bin/multichaind {{ blockchainName }}@{{ hostvars['multichain-contractor'].ansible_host }}:{{ networkPort }} -daemon -rpcallowip=0.0.0.0 >> /home/ansible/.multichain/{{ blockchainName }}/autostart.log"
     user: ansible
   register: cronResult

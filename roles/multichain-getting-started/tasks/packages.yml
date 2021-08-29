@@ -4,8 +4,19 @@
     name:
     - python3
     - python3-pip
-    state: present
+    state: latest
 
-- name: install required pip modules
+- name: install required pip modules if pip3 is installed
   pip:
-    name: mcrpc
+    name: 
+    - mcrpc
+    - requests
+    executable: pip3
+  failed_when: no
+
+- name: install required pip modules if pip3 is installed
+  pip:
+    name:
+    - mcrpc
+    - requests
+  failed_when: no

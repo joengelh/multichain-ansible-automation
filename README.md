@@ -14,6 +14,12 @@ ansible-playbook deploy.yml -i inventory
 ```
 installs, starts and permissions the blockchain on all nodes.
 
+In Case the *ansible_hosts* are already set up and only the software needs to be installed, executing the following playbook like so:
+```bash
+ansible-playbook redeploy.yml -i inventory
+```
+will do the job in a faster manner.
+
 ## Configuration
 Some basic configuration of the node setup can be done by modifying the **host_vars/all.yml** file:
 

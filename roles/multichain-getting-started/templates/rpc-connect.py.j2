@@ -1,0 +1,5 @@
+import mcrpc
+
+client = mcrpc.RpcClient('{{ hostvars['multichain-contractor'].ansible_host }}','{{ rpcPort }}','{{ userDecoded[0] }}','{{ passwordDecoded[0] }}')
+
+client.getinfo()

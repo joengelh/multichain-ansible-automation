@@ -18,8 +18,7 @@
   - multichain-attach
 
 - name: create getting started material
-  hosts: localhost
-  connection: local
-  become: no
+  hosts: all
+  become: yes
   roles:
   - multichain-getting-started

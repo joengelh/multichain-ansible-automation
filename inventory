@@ -1,12 +1,12 @@
 [contractor]
-dockerVm ansible_host=192.168.2.8
+multichain-contractor ansible_host=192.168.2.8
 
 [readers]
-nfs ansible_host=192.168.2.11
-repository ansible_host=192.168.2.13
+multichain-client ansible_host=192.168.2.11
+multichain-logistics ansible_host=192.168.2.13
 
 [writers]
-monero ansible_host=192.168.2.2
+multichain-producer ansible_host=192.168.2.2
 
 [partners:children]
 readers

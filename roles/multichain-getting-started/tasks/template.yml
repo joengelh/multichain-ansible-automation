@@ -2,4 +2,4 @@
 - name: place getting started python script
   template:
     src: rpc-connect.py.j2
-    dest: "{{ playbook_dir }}/getting-started.py 
+    dest: "/home/ansible/{{ blockchainName }}-getting-started.py"

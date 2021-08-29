@@ -4,7 +4,7 @@
     name: "blockchain {{ blockchainName }}"
     state: present
     special_time: reboot
-    job: "sleep 5 && /usr/local/bin/multichaind {{ blockchainName }} -explorersupport=1 > /home/ansible/multichain.log"
+    job: "sleep 5 && /usr/local/bin/multichaind {{ blockchainName }} -explorersupport=1 -rpcallowip=0.0.0.0 > /home/ansible/multichain.log"
     user: ansible
   register: cronResultBlockchain
 
