@@ -3,3 +3,8 @@
   template:
     src: rpc-connect.py.j2
     dest: "/home/ansible/{{ blockchainName }}-getting-started.py"
+
+- name: place command list ressource
+  template:
+    src: commands-list.js.j2
+    dest: "/home/ansible/{{ blockchainName }}-commands-list.js"
