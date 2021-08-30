@@ -1,4 +1,4 @@
-[serviceProvider]
+[contractor]
 serviceProvider ansible_host=192.168.2.8
 
 [readers]
@@ -13,6 +13,6 @@ readers
 writers
 
 [total:children]
-serviceProvider
+contractor
 readers
 writers
