@@ -1,12 +1,5 @@
-import json
-import requests
-from requests.auth import HTTPBasicAuth
+import mcrpc
 
-url = 'http://{{ ansible_default_ipv4.address }}:{{ rpcPort }}/'
-headers = {'content-type': 'application/json'}
+client = mcrpc.RpcClient('{{ hostvars['multichain-contractor'].ansible_host }}','{{ rpcPort }}','{{ userDecoded[0] }}','{{ passwordDecoded[0] }}')
 
-payload = {"method":"getinfo","params":[],"id":1,"chain_name":"supplyChain"}
-
-r = requests.post(url, data=json.dumps(payload), headers=headers, auth=HTTPBasicAuth('{{ userDecoded[0] }}', '{{ passwordDecoded[0] }}'))
-
-print(r.text)
+client.getinfo()

@@ -1,4 +1,5 @@
 ---
 - import_tasks: set-facts.yml
+- import_tasks: packages.yml
 - import_tasks: template.yml
 - import_tasks: fetch.yml
