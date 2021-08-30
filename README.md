@@ -36,7 +36,7 @@ explorerPort: 4444
 ## The Inventory
 In the Inventory there are 6 groups used to diffrentiate between the hosts.
 1. For security reasons, only the configuration of the network interface and the user configuration are done using the root user, neccecitating in the **roottotal** group. This group includes the root user aswell as the IP-Addresses of all hosts taking part in the distributed ledger.
-2. The **contractor** group can only include one host, since a blockchain can only be created at one place, with the other nodes joining the network later.
+2. The **serviceProvider** group can only include one host, since a blockchain can only be created at one place, with the other nodes joining the network later.
 3. The **readers** group are members of the Blockchain network, who can only read from the blockchain, not write or issue assets.
 4. The **writers** group includes all members, who can read, write and issue assets on the blockchain
 5. The **partners** group simply is the combination if readers and writers
@@ -52,7 +52,7 @@ In the Inventory there are 6 groups used to diffrentiate between the hosts.
 | hostname-set       | sets hostname to be equal to inventory name           | total        |
 | time-set           | sets central european time zone                       | total        |
 | multichain-install | installs and configures the servers to run multichain | total        |
-| multichain-deploy  | creates genesis block, starts blockchain & explorer   | contractor   |
+| multichain-deploy  | creates genesis block, starts blockchain & explorer   | serviceProvider   |
 | multichain-attach  | connects the **partner** servers and permissions them | partners     |
 
 ## Tools
@@ -66,10 +66,10 @@ ansible-playbook cleanup.yml -i inventory
 
 ### multichain explorer
 Included in the role multichain-deploy is also the installation of the multichain explorer 2.
-This is a webaplication used to display broad metrics about the distributed ledger. It can be accessed at the contractors address: **<server_ip>:{{ explorerPort }}**
+This is a webaplication used to display broad metrics about the distributed ledger. It can be accessed at the serviceProviders address: **<server_ip>:{{ explorerPort }}**
 
 ### getting_started.py
-At the end of the Ansible Playbook run **deploy.yml** a pythonscript in the projects root directory is created containing an import of a [python module](https://github.com/coblo/mcrpc) and the connection details to the contractor node.
+At the end of the Ansible Playbook run **deploy.yml** a pythonscript in the projects root directory is created containing an import of a [python module](https://github.com/coblo/mcrpc) and the connection details to the serviceProvider node.
 With this script you can start developing your multichain solution right away.
 
 ### multichain-supplychain-demo

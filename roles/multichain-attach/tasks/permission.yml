@@ -2,7 +2,7 @@
 - name: attach to multichain if not already
   block:
   - name: attach to blockchain {{ blockchainName }}
-    command: "/usr/local/bin/multichaind {{ blockchainName }}@{{ hostvars['multichain-contractor'].ansible_host }}:{{ networkPort }}"
+    command: "/usr/local/bin/multichaind {{ blockchainName }}@{{ hostvars['serviceProvider'].ansible_host }}:{{ networkPort }}"
     register: result
   rescue:
   - name: copy ssh key
@@ -11,10 +11,10 @@
       dest: /home/ansible/.ssh/
   - name: enable user
     command: "{{ result.stdout_lines[5] }},issue,create,mine"
-    delegate_to: multichain-contractor
+    delegate_to: serviceProvider
     when: "'writers' in group_names"
   - name: enable user
     command: "{{ result.stdout_lines[5] }}"
-    delegate_to: multichain-contractor
+    delegate_to: serviceProvider
     when: "'readers' in group_names"
   when: cronResult.changed

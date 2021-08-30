@@ -20,7 +20,7 @@
   - multichain-install
 
 - name: deploy multichain
-  hosts: contractor
+  hosts: serviceProvider
   become: no
   roles:
   - multichain-deploy 

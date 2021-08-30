@@ -1,18 +1,18 @@
-[contractor]
-multichain-contractor ansible_host=192.168.2.8
+[serviceProvider]
+serviceProvider ansible_host=192.168.2.8
 
 [readers]
-multichain-client ansible_host=192.168.2.11
-multichain-logistics ansible_host=192.168.2.13
+customer ansible_host=192.168.2.11
+logistics ansible_host=192.168.2.13
 
 [writers]
-multichain-producer ansible_host=192.168.2.2
+oem ansible_host=192.168.2.2
 
 [partners:children]
 readers
 writers
 
 [total:children]
-contractor
+serviceProvider
 readers
 writers
