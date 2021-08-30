@@ -54,6 +54,7 @@ In the Inventory there are 6 groups used to diffrentiate between the hosts.
 | multichain-install | installs and configures the servers to run multichain | total        |
 | multichain-deploy  | creates genesis block, starts blockchain & explorer   | serviceProvider   |
 | multichain-attach  | connects the **partner** servers and permissions them | partners     |
+| multichain-getting-started  | deploys sample code with credentials for every member | total |
 
 ## Tools
 
