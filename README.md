@@ -1,5 +1,7 @@
 # Multichain Ansible Automation
 This project can be used to deploy and configure the distributed ledger Multichain based on the Bitcoin technology on as many hosts as required using the configuration engine Ansible.
+After the configuration all nodes are configured to open rpc and network port to everyone and have a *getting_started* script in the ansible´s home directory, which is also being copied back to the ansible master containing user and key.
+Thus it is not advised to deploy a multichain demo with this project on non-private networks.
 
 ## Requirements
 In order to deploy the multichain only the configurations hosts public SSH key has to be copied to the hosts root directory using the command:
