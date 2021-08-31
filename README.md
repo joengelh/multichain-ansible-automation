@@ -3,6 +3,10 @@ This project can be used to deploy and configure the distributed ledger Multicha
 Afterwards all nodes are configured to open rpc and network port to everyone and have a *getting_started* script in the ansible´s home directory, which is also being copied back to the ansible master containing user and key.
 Thus it is not advised to deploy a multichain demo with this repository in a publicly accessible network.
 
+A demo for this setup, fitting the existing inventory can be found [on Github](https://github.com/joengelh/multichain-supplychain-demo) aswell.
+
+![grafik](https://user-images.githubusercontent.com/73387330/131571145-0a264a2b-b1d0-4165-bb45-6c22f807dfcc.png)
+
 ## Requirements
 In order to deploy the multichain only the configurations hosts public SSH key has to be copied to the hosts root directory using the command:
 ```bash
@@ -73,6 +77,3 @@ This is a webaplication used to display broad metrics about the distributed ledg
 ### getting_started.py
 At the end of the Ansible Playbook run **deploy.yml** a pythonscript in the projects root directory is created containing an import of a [python module](https://github.com/coblo/mcrpc) and the connection details to the contractor node.
 With this script you can start developing your multichain solution right away.
-
-### multichain-supplychain-demo
-The supplychain demo for this chain is described in [Git Repository](https://github.com/joengelh/multichain-supplychain-demo)
