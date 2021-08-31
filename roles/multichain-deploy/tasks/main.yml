@@ -4,3 +4,4 @@
 - import_tasks: cron.yml
 - import_tasks: explorer.yml
 - import_tasks: reboot.yml
+- import_tasks: permission.yml
