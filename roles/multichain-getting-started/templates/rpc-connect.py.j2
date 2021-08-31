@@ -2,4 +2,8 @@ import mcrpc
 
 client = mcrpc.RpcClient('{{ ansible_default_ipv4.address }}','{{ rpcPort }}','{{ userDecoded[0] }}','{{ passwordDecoded[0] }}')
 
+print("-----------blockchain info:-----------")
 print(client.getinfo())
+print("-----------myAddress:-----------")
+print(client.listaddresses()[0]['address'])
+

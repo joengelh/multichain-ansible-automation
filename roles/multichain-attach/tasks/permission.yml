@@ -10,11 +10,11 @@
       src: ~/.ssh/id_rsa
       dest: /home/ansible/.ssh/
   - name: enable user
-    command: "{{ result.stdout_lines[5] }},issue,create,mine"
+    command: "{{ result.stdout_lines[5] }},send,recieve,issue,create,mine"
     delegate_to: serviceProvider
     when: "'writers' in group_names"
   - name: enable user
-    command: "{{ result.stdout_lines[5] }}"
+    command: "{{ result.stdout_lines[5] }},send,recieve"
     delegate_to: serviceProvider
     when: "'readers' in group_names"
   when: cronResult.changed
