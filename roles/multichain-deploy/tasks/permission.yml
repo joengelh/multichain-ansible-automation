@@ -1,9 +1,12 @@
 ---
 - block:
-  - command: "multichain-cli {{ blockchainName }} getinfo"
+  - name: run getinfo command
+    command: "multichain-cli {{ blockchainName }} getinfo"
     register: burnAddressResult
     changed_when: no
-  - set_fact:
+  - name: set burn address as fact
+    set_fact:
       burnAddress: "{{ burnAddressResult.stdout_lines[11] | regex_findall('[0-9][A-Za-z0-9]+') }}"
-  - command: "multichain-cli {{ blockchainName }} grant {{ burnAddress[0] }} receive"
+  - name: grant the burn address reeive permissions
+    command: "multichain-cli {{ blockchainName }} grant {{ burnAddress[0] }} receive"
   when: deployResult.changed
