@@ -1,4 +1,10 @@
 ---
+- name: start firewalld
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+
 - name: open default multichain network port {{ networkPort }} and rpc port {{ rpcPort }}
   firewalld:
     port: "{{ item }}/tcp"

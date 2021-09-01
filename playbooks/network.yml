@@ -1,0 +1,6 @@
+---
+- name: configure network
+  hosts: bank
+  become: yes
+  roles:
+  - network

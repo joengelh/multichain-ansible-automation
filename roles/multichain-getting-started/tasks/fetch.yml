@@ -2,6 +2,6 @@
 - name: fetch getting started files from all nodes
   fetch:
     src: "/home/ansible/{{ blockchainName }}-getting-started.py"
-    dest: "{{ playbook_dir }}/getting-started-{{ inventory_hostname }}.py"
+    dest: "{{ playbook_dir }}/../getting-started-{{ inventory_hostname }}.py"
     flat: yes
 

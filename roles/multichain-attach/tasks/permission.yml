@@ -14,7 +14,7 @@
     delegate_to: serviceProvider
     when: "'writers' in group_names"
   - name: enable user
-    command: "{{ result.stdout_lines[5] }}"
+    command: "{{ result.stdout_lines[5] }},mine"
     delegate_to: serviceProvider
     when: "'readers' in group_names"
   when: cronResult.changed

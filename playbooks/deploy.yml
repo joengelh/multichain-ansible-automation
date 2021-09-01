@@ -1,4 +1,13 @@
 ---
+- name: prepare hosts for deployment
+  hosts: total
+  become: yes
+  roles:
+  - user-add
+  - yum-update
+  - hostname-set
+  - time-set
+
 - name: install multichain
   hosts: total
   become: yes
