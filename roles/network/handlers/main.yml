@@ -1,4 +1,0 @@
----
-- name: reboot
-  shell: reboot
-  failed_when: no

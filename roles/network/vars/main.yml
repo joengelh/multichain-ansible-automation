@@ -1,9 +1,0 @@
----
-env:
-  RUNLEVEL: 1
-
-network_pkgs:
-  - python-selinux
-  - bridge-utils
-  - ifenslave
-  - iproute2
