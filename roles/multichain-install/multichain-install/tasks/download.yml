@@ -1,0 +1,17 @@
+---
+- name: download multichain
+  unarchive:
+    src: https://www.multichain.com/download/multichain-2.2.tar.gz
+    dest: /home/ansible/
+    remote_src: yes
+
+- name: install multichain
+  file:
+    src: "/home/ansible/multichain-2.2/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    state: link
+    force: yes
+  loop:
+  - multichaind
+  - multichain-cli
+  - multichain-util
